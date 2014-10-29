@@ -49,7 +49,8 @@ module Ipecache
           exit 1
         end
 
-        Faraday.new(url: config.url || 'https://cdn-api.swisstxt.ch') do |conn|
+        Faraday.new(url: config.url || 'https://cdn-api.swisstxt.ch',
+          :ssl => { :verify => false }) do |conn|
           conn.request :url_encoded
           conn.headers[:user_agent]     = 'Ipecache'
           conn.headers[:accept]         = 'application/json'
